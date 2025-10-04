@@ -14,6 +14,8 @@
 #include <QLabel>
 #include <QRandomGenerator>
 #include <cmath>
+#include <algorithm>
+#include <QGraphicsView>
 
 using namespace QtCharts;
 
@@ -105,6 +107,7 @@ void MainWindow::setupCentralCharts()
     timeChartView = new QChartView(timeChart, this);
     timeChartView->setRenderHint(QPainter::Antialiasing);
     timeChartView->setRubberBand(QChartView::RectangleRubberBand);
+    timeChartView->setDragMode(QGraphicsView::ScrollHandDrag);
 
     // Frequency domain chart
     freqChart = new QChart();
@@ -122,6 +125,7 @@ void MainWindow::setupCentralCharts()
     freqChartView = new QChartView(freqChart, this);
     freqChartView->setRenderHint(QPainter::Antialiasing);
     freqChartView->setRubberBand(QChartView::RectangleRubberBand);
+    freqChartView->setDragMode(QGraphicsView::ScrollHandDrag);
 
     vbox->addWidget(timeChartView, 1);
     vbox->addWidget(freqChartView, 1);
