@@ -36,7 +36,7 @@ MainWindow::MainWindow(QWidget *parent)
     const double frequencyHz = 1000.0;
     for (int i = 0; i < samples.size(); ++i) {
         const double t = static_cast<double>(i) / sampleRateHz;
-        samples[i] = std::sin(2.0 * M_PI * frequencyHz * t);
+        samples[i] = std::sin(2.0 * 3.14159265358979323846 * frequencyHz * t);
     }
     updateTimePlot();
     updateSpectrumPlot();
@@ -203,7 +203,7 @@ void MainWindow::updateSpectrumPlot()
     QVector<double> windowed(n);
     // Hann window to reduce leakage
     for (int i = 0; i < n; ++i) {
-        const double w = 0.5 * (1.0 - std::cos(2.0 * M_PI * i / (n - 1)));
+        const double w = 0.5 * (1.0 - std::cos(2.0 * 3.14159265358979323846 * i / (n - 1)));
         windowed[i] = samples[i] * w;
     }
     QVector<double> mag;
@@ -293,7 +293,7 @@ void MainWindow::generateSignal()
         const double frequency = sampleRateHz / static_cast<double>(periodSamples);
         for (int i = 0; i < n; ++i) {
             const double t = static_cast<double>(i) / sampleRateHz;
-            samples[i] = amplitude * std::sin(2.0 * M_PI * frequency * t);
+            samples[i] = amplitude * std::sin(2.0 * 3.14159265358979323846 * frequency * t);
         }
     }
 
@@ -321,7 +321,7 @@ void MainWindow::computeFftMagnitude(const QVector<double> &input, int nFft, QVe
     }
 
     for (int len = 2; len <= nFft; len <<= 1) {
-        const double ang = -2.0 * M_PI / static_cast<double>(len);
+        const double ang = -2.0 * 3.14159265358979323846 / static_cast<double>(len);
         const double wlenCos = std::cos(ang);
         const double wlenSin = std::sin(ang);
         for (int i = 0; i < nFft; i += len) {
